@@ -48,6 +48,7 @@ class SenderShell extends Shell {
 				$email = $this->_newEmail($configName);
 				$sent = $email
 					->to($e['EmailQueue']['to'])
+					->subject($e['EmailQueue']['subject'])
 					->template($template, $layout)
 					->viewVars($e['EmailQueue']['template_vars'])
 					->send();

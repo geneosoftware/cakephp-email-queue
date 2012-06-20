@@ -43,13 +43,14 @@ class EmailQueueTest extends CakeTestCase {
  */
 	public function testEnqueue() {
 		$count = $this->EmailQueue->find('count');
-		$this->EmailQueue->enqueue('someone@domain.com', array('a' => 'variable', 'some' => 'thing'));
+		$this->EmailQueue->enqueue('someone@domain.com', array('a' => 'variable', 'some' => 'thing'), array('subject' => 'Hey!'));
 		$id = $this->EmailQueue->id;
 		$this->assertEquals(++$count, $this->EmailQueue->find('count'));
 
 		$result = $this->EmailQueue->read(null, $id);
 		$expected = array(
 			'to' => 'someone@domain.com',
+			'subject' => 'Hey!',
 			'template' => 'default',
 			'layout' => 'default',
 			'template_vars' => array('a' => 'variable', 'some' => 'thing'),
@@ -65,7 +66,7 @@ class EmailQueueTest extends CakeTestCase {
 		$this->assertEquals(gmdate('Y-m-d H'),$sendAt->format('Y-m-d H'));
 
 		$date = gmdate('Y-m-d H:i:s');
-		$this->EmailQueue->enqueue(array('a@example.com', 'b@example.com'), array('a' => 'b'), array('send_at' => $date));
+		$this->EmailQueue->enqueue(array('a@example.com', 'b@example.com'), array('a' => 'b'), array('send_at' => $date, 'subject' => 'Hey!'));
 		$this->assertEquals($count + 2, $this->EmailQueue->find('count'));
 
 		$email = $this->EmailQueue->find('first', array(
@@ -80,7 +81,7 @@ class EmailQueueTest extends CakeTestCase {
 		$this->assertEquals(array('a' => 'b'), $email['EmailQueue']['template_vars']);
 		$this->assertEquals($date, $email['EmailQueue']['send_at']);
 
-		$this->EmailQueue->enqueue('c@example.com', array('a' => 'c'), array('send_at' => $date, 'config' => 'other', 'template' => 'custom', 'layout' => 'email'));
+		$this->EmailQueue->enqueue('c@example.com', array('a' => 'c'), array('subject' => 'Hey', 'send_at' => $date, 'config' => 'other', 'template' => 'custom', 'layout' => 'email'));
 		$email = $this->EmailQueue->read();
 		$this->assertEquals(array('a' => 'c'), $email['EmailQueue']['template_vars']);
 		$this->assertEquals($date, $email['EmailQueue']['send_at']);

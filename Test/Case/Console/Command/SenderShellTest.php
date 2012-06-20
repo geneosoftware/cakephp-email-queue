@@ -42,11 +42,13 @@ class SenderShellTest extends CakeTestCase {
 	}
 
 	public function testMainAllFail() {
-		$email = $this->getMock('CakeEmail', array('to', 'template', 'viewVars', 'send'));
+		$email = $this->getMock('CakeEmail', array('to', 'template', 'viewVars', 'send', 'subject'));
 
 		$this->Sender->expects($this->exactly(3))->method('_newEmail')->with('default')->will($this->returnValue($email));
 		$email->expects($this->exactly(3))->method('send')->will($this->returnValue(false));
 		$email->expects($this->exactly(3))->method('to')->will($this->returnSelf());
+		$email->expects($this->exactly(3))->method('subject')->with('Free dealz')->will($this->returnSelf());
+
 		$email->expects($this->exactly(3))->method('template')
 			->with('default', 'default')
 			->will($this->returnSelf());
@@ -74,7 +76,7 @@ class SenderShellTest extends CakeTestCase {
 
 
 	public function testMainAllWin() {
-		$email = $this->getMock('CakeEmail', array('to', 'template', 'viewVars', 'send'));
+		$email = $this->getMock('CakeEmail', array('to', 'template', 'viewVars', 'send', 'subject'));
 
 		$this->Sender->params['template'] = 'other';
 		$this->Sender->params['layout'] = 'custom';
@@ -86,6 +88,7 @@ class SenderShellTest extends CakeTestCase {
 
 		$email->expects($this->exactly(3))->method('send')->will($this->returnValue(true));
 		$email->expects($this->exactly(3))->method('to')->will($this->returnSelf());
+		$email->expects($this->exactly(3))->method('subject')->with('Free dealz')->will($this->returnSelf());
 		$email->expects($this->exactly(3))->method('template')
 			->with('other', 'custom')
 			->will($this->returnSelf());
@@ -113,13 +116,14 @@ class SenderShellTest extends CakeTestCase {
 	}
 
 	public function testMainAllFailWithException() {
-		$email = $this->getMock('CakeEmail', array('to', 'template', 'viewVars', 'send'));
+		$email = $this->getMock('CakeEmail', array('to', 'template', 'viewVars', 'send', 'subject'));
 
 		$this->Sender->expects($this->exactly(3))->method('_newEmail')->with('default')->will($this->returnValue($email));
 
 		$email->expects($this->exactly(3))->method('send')->will($this->throwException(new SocketException('fail')));
 
 		$email->expects($this->exactly(3))->method('to')->will($this->returnSelf());
+		$email->expects($this->exactly(3))->method('subject')->with('Free dealz')->will($this->returnSelf());
 		$email->expects($this->exactly(3))->method('template')
 			->with('default', 'default')
 			->will($this->returnSelf());

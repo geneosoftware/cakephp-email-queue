@@ -20,6 +20,7 @@ class EmailQueueFixture extends CakeTestFixture {
 	public $fields = array(
 		'id' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 36, 'key' => 'primary', 'collate' => 'ascii_general_ci', 'charset' => 'ascii'),
 		'to' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'subject' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 255, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'config' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 30, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'template' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'layout' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
@@ -45,6 +46,7 @@ class EmailQueueFixture extends CakeTestFixture {
 		array(
 			'id' => 'email-1',
 			'to' => 'example@example.com',
+			'subject' => 'Free dealz',
 			'config' => 'default',
 			'template' => 'default',
 			'layout' => 'default',
@@ -59,6 +61,7 @@ class EmailQueueFixture extends CakeTestFixture {
 		array(
 			'id' => 'email-2',
 			'to' => 'example2@example.com',
+			'subject' => 'Free dealz',
 			'config' => 'default',
 			'template' => 'default',
 			'layout' => 'default',
@@ -73,6 +76,7 @@ class EmailQueueFixture extends CakeTestFixture {
 		array(
 			'id' => 'email-3',
 			'to' => 'example3@example.com',
+			'subject' => 'Free dealz',
 			'config' => 'default',
 			'template' => 'default',
 			'layout' => 'default',
@@ -87,6 +91,7 @@ class EmailQueueFixture extends CakeTestFixture {
 		array(
 			'id' => 'email-4',
 			'to' => 'example@example.com',
+			'subject' => 'Free dealz',
 			'config' => 'default',
 			'template' => 'default',
 			'layout' => 'default',
@@ -101,6 +106,7 @@ class EmailQueueFixture extends CakeTestFixture {
 		array(
 			'id' => 'email-5',
 			'to' => 'example@example.com',
+			'subject' => 'Free dealz',
 			'config' => 'default',
 			'template' => 'default',
 			'layout' => 'default',
@@ -115,6 +121,7 @@ class EmailQueueFixture extends CakeTestFixture {
 		array(
 			'id' => 'email-6',
 			'to' => 'example@example.com',
+			'subject' => 'Free dealz',
 			'config' => 'default',
 			'template' => 'default',
 			'layout' => 'default',
