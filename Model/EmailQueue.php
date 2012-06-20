@@ -79,7 +79,12 @@ class EmailQueue extends AppModel {
 			),
 			'order' => array('EmailQueue.created' => 'ASC')
 		));
-		$this->updateAll(array('locked' => true, array('EmailQueue.id' => Set::extract('{n}.EmailQueue.id', $emails))));
+
+		if (!empty($emails)) {
+			$ids =  Set::extract('{n}.EmailQueue.id', $emails);
+			$this->updateAll(array('locked' => true), array('EmailQueue.id' => $ids));
+		}
+
 		$this->getDataSource()->commit();
 		return $emails;
 	}
@@ -149,6 +154,9 @@ class EmailQueue extends AppModel {
 		}
 
 		foreach ($results as &$r) {
+			if (!isset($r[$this->alias]['template_vars'])) {
+				return $results;
+			}
 			$r[$this->alias]['template_vars'] = json_decode($r[$this->alias]['template_vars'], true);
 		}
 		return $results;
