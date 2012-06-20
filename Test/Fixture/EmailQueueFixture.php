@@ -58,7 +58,7 @@ class EmailQueueFixture extends CakeTestFixture {
 		),
 		array(
 			'id' => 'email-2',
-			'to' => 'example@example.com',
+			'to' => 'example2@example.com',
 			'config' => 'default',
 			'template' => 'default',
 			'layout' => 'default',
@@ -72,7 +72,7 @@ class EmailQueueFixture extends CakeTestFixture {
 		),
 		array(
 			'id' => 'email-3',
-			'to' => 'example@example.com',
+			'to' => 'example3@example.com',
 			'config' => 'default',
 			'template' => 'default',
 			'layout' => 'default',

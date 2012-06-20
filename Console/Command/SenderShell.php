@@ -45,14 +45,14 @@ class SenderShell extends Shell {
 			$layout = $e['EmailQueue']['layout'] === 'default' ? $this->params['layout'] : $e['EmailQueue']['layout'];
 
 			try {
-				$email = new CakeEmail($configName);
+				$email = $this->_newEmail($configName);
 				$sent = $email
 					->to($e['EmailQueue']['to'])
 					->template($template, $layout)
 					->viewVars($e['EmailQueue']['template_vars'])
 					->send();
-			} catch (SocketException $e) {
-				$this->err($e->getMessage());
+			} catch (SocketException $exception) {
+				$this->err($exception->getMessage());
 				$sent = false;
 			}
 
@@ -76,6 +76,15 @@ class SenderShell extends Shell {
  **/
 	public function clearLocks() {
 		 ClassRegistry::init('EmailQueue.EmailQueue')->clearLocks();
+	}
+
+/**
+ * Returns a new instance of CakeEmail
+ *
+ * @return CakeEmail
+ **/
+	protected function _newEmail($config) {
+		return new CakeEmail($config);
 	}
 
 }
