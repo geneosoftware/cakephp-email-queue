@@ -73,7 +73,7 @@ and queue a new one by storing the correct data:
 Emails should be sent using bundled Sender command, use `-h` modifier to
 read available options
 
-	# Console/cake EmailQueue.Sennder -h
+	# Console/cake EmailQueue.Sender -h
 
 You can configure this command to be run under a cron or any other tool
 you wish to use.
