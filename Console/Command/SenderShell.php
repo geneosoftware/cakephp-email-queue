@@ -1,6 +1,7 @@
 <?php
 
 App::uses('Shell', 'Console');
+App::uses('CakeEmail', 'Network/Email');
 
 class SenderShell extends Shell {
 
@@ -21,6 +22,11 @@ class SenderShell extends Shell {
 			->addOption('layout', array(
 				'short' => 'w',
 				'help' => 'Name of the layout to be used to wrap template',
+				'default' => 'default'
+			))
+			->addOption('config', array(
+				'short' => 'c',
+				'help' => 'Name of email settings to use as defined in email.php',
 				'default' => 'default'
 			))
 			->addSubCommand('clearLocks', array(
