@@ -56,6 +56,7 @@ class SenderShell extends Shell {
 					->to($e['EmailQueue']['to'])
 					->subject($e['EmailQueue']['subject'])
 					->template($template, $layout)
+					->emailFormat($e['EmailQueue']['format'])
 					->viewVars($e['EmailQueue']['template_vars'])
 					->send();
 			} catch (SocketException $exception) {

@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `email_queue` (
   `config` varchar(30) NOT NULL,
   `template` varchar(50) NOT NULL,
   `layout` varchar(50) NOT NULL,
+  `format` varchar(5) NOT NULL,
   `template_vars` text NOT NULL,
   `sent` tinyint(1) NOT NULL,
   `locked` tinyint(1) NOT NULL DEFAULT 0,

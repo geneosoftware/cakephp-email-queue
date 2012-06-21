@@ -53,6 +53,7 @@ class EmailQueueTest extends CakeTestCase {
 			'subject' => 'Hey!',
 			'template' => 'default',
 			'layout' => 'default',
+			'format' => 'both',
 			'template_vars' => array('a' => 'variable', 'some' => 'thing'),
 			'sent' => false,
 			'locked' => false,

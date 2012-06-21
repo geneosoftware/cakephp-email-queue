@@ -67,6 +67,7 @@ and queue a new one by storing the correct data:
  * `send_at` : date time sting representing the time this email should be sent at (in UTC)
  * `template` :  the name of the element to use as template for the email message
  * `layout` : the name of the layout to be used to wrap email message
+ * `format` : Type of template to use (html, text or both)
  * `config` : the name of the email config to be used for sending
 
 ### Sending emails

@@ -35,6 +35,7 @@ class EmailQueue extends AppModel {
  * - send_at : date time sting representing the time this email should be sent at (in UTC)
  * - template :  the name of the element to use as template for the email message
  * - layout : the name of the layout to be used to wrap email message
+ * - format: Type of template to use (html, text or both)
  * - config : the name of the email config to be used for sending
  *
  * @return void
@@ -45,6 +46,7 @@ class EmailQueue extends AppModel {
 			'send_at' => gmdate('Y-m-d H:i:s'),
 			'template' => 'default',
 			'layout' => 'default',
+			'format' => 'both',
 			'template_vars' => $data,
 			'config' => 'default'
 		);
