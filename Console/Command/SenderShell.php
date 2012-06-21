@@ -64,10 +64,9 @@ class SenderShell extends Shell {
 				$sent = false;
 			}
 
-
 			if ($sent) {
 				$emailQueue->success($e['EmailQueue']['id']);
-				$this->out('<sucess>Email ' . $e['EmailQueue']['id'] . ' was sent</sucess>');
+				$this->out('<success>Email ' . $e['EmailQueue']['id'] . ' was sent</success>');
 			} else {
 				$emailQueue->fail($e['EmailQueue']['id']);
 				$this->out('<error>Email ' . $e['EmailQueue']['id'] . ' was not sent</error>');
