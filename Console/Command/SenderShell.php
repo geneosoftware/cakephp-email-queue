@@ -1,9 +1,8 @@
 <?php
-
-App::uses('Shell', 'Console');
+App::uses('AppShell', 'Console');
 App::uses('CakeEmail', 'Network/Email');
 
-class SenderShell extends Shell {
+class SenderShell extends AppShell {
 
 	public function getOptionParser() {
 		$parser = parent::getOptionParser();
@@ -93,5 +92,4 @@ class SenderShell extends Shell {
 	protected function _newEmail($config) {
 		return new CakeEmail($config);
 	}
-
 }
