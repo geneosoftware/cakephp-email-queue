@@ -1,5 +1,5 @@
 <?php
-App::uses('AppShell', 'Console');
+App::uses('AppShell', 'Console/Command');
 App::uses('CakeEmail', 'Network/Email');
 
 class SenderShell extends AppShell {
