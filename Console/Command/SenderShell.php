@@ -48,10 +48,13 @@ class SenderShell extends AppShell {
 			$configName = $e['EmailQueue']['config'] === 'default' ? $this->params['config'] : $e['EmailQueue']['config'];
 			$template = $e['EmailQueue']['template'] === 'default' ? $this->params['template'] : $e['EmailQueue']['template'];
 			$layout = $e['EmailQueue']['layout'] === 'default' ? $this->params['layout'] : $e['EmailQueue']['layout'];
-
+			
+			$e['EmailQueue']['template_vars']['item'] = $e;
+			
 			try {
 				$email = $this->_newEmail($configName);
 				$sent = $email
+					->from(array($e['EmailQueue']['from_email'] => $e['EmailQueue']['from_name']))
 					->to($e['EmailQueue']['to'])
 					->subject($e['EmailQueue']['subject'])
 					->template($template, $layout)
