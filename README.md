@@ -46,7 +46,7 @@ If you are already using `CakePlugin::loadAll();`, then this is not necessary.
 In order to use this plugin, you need to create a database table.
 Required SQL is located at
 
-	# Config/Schema/email_queue.sql
+	# Config/schema.sql
 
 Just load it into your database.
 
