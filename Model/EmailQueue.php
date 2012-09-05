@@ -105,10 +105,16 @@ class EmailQueue extends AppModel {
 /**
  * Releases locks for all emails in queue, useful for recovering from crashes
  *
- * @return void
+ * @return int number of emails unlocked
  **/
 	public function clearLocks() {
-		$this->updateAll(array('locked' => false));
+		$locked = $this->find('count', array(
+			'conditions' => array('locked' => true)
+		));
+		if ($locked) {
+			$this->updateAll(array('locked' => false));
+		}
+		return $locked;
 	}
 
 /**

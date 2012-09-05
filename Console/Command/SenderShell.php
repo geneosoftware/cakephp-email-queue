@@ -44,6 +44,10 @@ class SenderShell extends AppShell {
 		$emailQueue = ClassRegistry::init('EmailQueue.EmailQueue');
 
 		$emails = $emailQueue->getBatch($this->params['limit']);
+		if (!$emails) {
+				$this->out('<warning>No emails found to process</warning>');
+				return;
+		}
 		foreach ($emails as $e) {
 			$configName = $e['EmailQueue']['config'] === 'default' ? $this->params['config'] : $e['EmailQueue']['config'];
 			$template = $e['EmailQueue']['template'] === 'default' ? $this->params['template'] : $e['EmailQueue']['template'];
@@ -81,7 +85,11 @@ class SenderShell extends AppShell {
  * @return void
  **/
 	public function clearLocks() {
-		 ClassRegistry::init('EmailQueue.EmailQueue')->clearLocks();
+		if ($number = ClassRegistry::init('EmailQueue.EmailQueue')->clearLocks()) {
+			$this->out(sprintf('<success>%d emails cleared</success>', $number));
+		} else {
+			$this->out('<warning>No emails found to clear</warning>');
+		}
 	}
 
 /**
