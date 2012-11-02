@@ -23,7 +23,7 @@ _[GIT Submodule]_
 
 In your app directory type:
 
-	git submodule add git@github.com:nodesagency/cakephp-email-queue.git Plugin/EmailQueue
+	git submodule add git@github.com:nodesagency/cakephp-email-queue.git app/Plugin/EmailQueue
 	git submodule init
 	git submodule update
 
@@ -31,7 +31,7 @@ _[GIT Clone]_
 
 In your plugin directory type
 
-	git clone git://github.com/nodesagency/cakephp-email-queue.git Plugin/EmailQueue
+	git clone git://github.com/nodesagency/cakephp-email-queue.git app/Plugin/EmailQueue
 
 ### Enable plugin
 
