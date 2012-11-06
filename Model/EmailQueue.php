@@ -139,22 +139,27 @@ class EmailQueue extends AppModel {
 /**
  * Converts array data for template vars into a json serialized string
  *
- * @return void
+ * @param array $options
+ * @return boolean
  **/
-	public function beforeSave() {
+	public function beforeSave($options = array()) {
 		if (isset($this->data[$this->alias]['template_vars'])) {
 			$this->data[$this->alias]['template_vars'] = json_encode($this->data[$this->alias]['template_vars']);
 		}
+
+		return parent::beforeSave($options);
 	}
 
 /**
  * Converts template_vars back into a php array
  *
- * @return void
+ * @param array $results
+ * @param boolean $primary
+ * @return array
  **/
-	public function afterFind($results, $primary) {
+	public function afterFind($results, $primary = false) {
 		if (!$primary) {
-			return $results;
+			return parent::afterFind($results, $primary);
 		}
 
 		foreach ($results as &$r) {
@@ -163,6 +168,7 @@ class EmailQueue extends AppModel {
 			}
 			$r[$this->alias]['template_vars'] = json_decode($r[$this->alias]['template_vars'], true);
 		}
+
 		return $results;
 	}
 
