@@ -51,6 +51,11 @@ class SenderShell extends AppShell {
 
 			try {
 				$email = $this->_newEmail($configName);
+
+				if (!empty($e['EmailQueue']['from_email']) && !empty($e['EmailQueue']['from_name'])) {
+					$email->from($e['EmailQueue']['from_email'], $e['EmailQueue']['from_name']);
+				}
+
 				$sent = $email
 					->to($e['EmailQueue']['to'])
 					->subject($e['EmailQueue']['subject'])
