@@ -1,4 +1,4 @@
-# Interactive shell for CakePHP #
+# CakePHP Email Queue plugin #
 
 This plugin provides an interface for creating emails on the fly and
 store them in a queue to be processed later by an offline worker using a
@@ -14,7 +14,7 @@ There are a few ways you can choose for intalling this plugin:
 
 _[Manual]_
 
-* Download this: [https://github.com/nodesagency/cake-interactive-shell/zipball/master](https://github.com/nodesagency/cakephp-email-queue/zipball/master)
+* Download this: [https://github.com/nodesagency/cakephp-email-queue/zipball/master](https://github.com/nodesagency/cakephp-email-queue/zipball/master)
 * Unzip that download.
 * Copy the resulting folder to `app/Plugin`
 * Rename the folder you just copied to `EmailQueue`
