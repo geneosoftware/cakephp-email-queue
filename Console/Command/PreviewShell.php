@@ -1,6 +1,7 @@
 <?php
 App::uses('AppShell', 'Console/Command');
 App::uses('CakeEmail', 'Network/Email');
+App::uses('ClassRegistry', 'Utility');
 
 class PreviewShell extends AppShell {
 
