@@ -70,6 +70,15 @@ and queue a new one by storing the correct data:
  * `format` : Type of template to use (html, text or both)
  * `config` : the name of the email config to be used for sending
 
+## Simple Usage
+
+_new in version 2.1_
+
+If the email content is a variable, you can also specific the email body as a string:
+
+	$emailBody = "Hello User,\nThis is your email.";
+	ClassRegistry::init('EmailQueue.EmailQueue')->enqueue($to, $emailBody, $options);
+
 ### Sending emails
 
 Emails should be sent using bundled Sender command, use `-h` modifier to
