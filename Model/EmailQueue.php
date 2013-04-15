@@ -29,6 +29,7 @@ class EmailQueue extends AppModel {
  *
  * @param mixed $to email or array of emails as recipients
  * @param array $data associative array of variables to be passed to the email template
+ *                    OR a string to be the email contents
  * @param array $options list of options for email sending. Possible keys:
  *
  * - subject : Email's subject
@@ -40,7 +41,7 @@ class EmailQueue extends AppModel {
  *
  * @return void
  */
-	public function enqueue($to, array $data, $options = array()) {
+	public function enqueue($to, $data, $options = array()) {
 		$defaults = array(
 			'subject' => '',
 			'send_at' => gmdate('Y-m-d H:i:s'),
@@ -50,6 +51,18 @@ class EmailQueue extends AppModel {
 			'template_vars' => $data,
 			'config' => 'default'
 		);
+
+		$useDefaultTemplate = false;
+		if (is_string($data)) {
+			$defaults['template_vars'] = array(
+				'body' => $data
+			);
+			$useDefaultTemplate = true;
+		}
+		if ($useDefaultTemplate || isset($options['body'])) {
+			$defaults['template'] = 'EmailQueue.default';
+			$defaults['layout'] = 'EmailQueue.default';
+		}
 
 		$email = $options + $defaults;
 		if (!is_array($to)) {
