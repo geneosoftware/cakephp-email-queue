@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `email_queue`;
 CREATE TABLE IF NOT EXISTS `email_queue` (
   `id` char(36) CHARACTER SET ascii NOT NULL,
-  `to` varchar(100) NOT NULL,
+  `to` varchar(129) NOT NULL,
   `from_name` varchar(255) NOT NULL,
   `from_email` varchar(255) NOT NULL,
   `subject` varchar(255) NOT NULL,
