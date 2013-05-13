@@ -58,7 +58,7 @@ class SenderShell extends AppShell {
 				}
 
 				$sent = $email
-					->to($e['EmailQueue']['to'])
+					->to($e['EmailQueue']['to_email'], $e['EmailQueue']['to_name'])
 					->subject($e['EmailQueue']['subject'])
 					->template($template, $layout)
 					->emailFormat($e['EmailQueue']['format'])
@@ -68,9 +68,9 @@ class SenderShell extends AppShell {
 				$this->err($exception->getMessage());
 				$sent = false;
 			}
-
+			
 			if ($sent) {
-				$emailQueue->success($e['EmailQueue']['id']);
+				$emailQueue->success($e['EmailQueue']['id'], $sent);
 				$this->out('<success>Email ' . $e['EmailQueue']['id'] . ' was sent</success>');
 			} else {
 				$emailQueue->fail($e['EmailQueue']['id']);

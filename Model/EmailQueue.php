@@ -56,8 +56,9 @@ class EmailQueue extends AppModel {
 			$to = array($to);
 		}
 
-		foreach ($to as $t) {
-			$email['to'] = $t;
+		foreach ($to as $to_email => $to_name) {
+			$email['to_email'] = $to_email;
+			$email['to_name'] = $to_name;
 			$this->create();
 			$this->save($email);
 		}
@@ -118,9 +119,10 @@ class EmailQueue extends AppModel {
  * @return boolean
  * @access public
  */
-	public function success($id) {
+	public function success($id, $sent_content) {
 		$this->id = $id;
-		return $this->saveField('sent', true);
+		$sent_content = implode(' ', $sent_content);
+		return $this->saveField('sent', true) && $this->saveField('sent_content', $sent_content);
 	}
 
 /**
