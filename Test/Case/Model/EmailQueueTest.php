@@ -43,19 +43,21 @@ class EmailQueueTest extends CakeTestCase {
  */
 	public function testEnqueue() {
 		$count = $this->EmailQueue->find('count');
-		$this->EmailQueue->enqueue('someone@domain.com', array('a' => 'variable', 'some' => 'thing'), array('subject' => 'Hey!'));
+		$this->EmailQueue->enqueue(array('Jon Doe' => 'someone@domain.com'), array('a' => 'variable', 'some' => 'thing'), array('subject' => 'Hey!'));
 		$id = $this->EmailQueue->id;
 		$this->assertEquals(++$count, $this->EmailQueue->find('count'));
 
 		$result = $this->EmailQueue->read(null, $id);
 		$expected = array(
-			'to' => 'someone@domain.com',
+			'to_email' => 'someone@domain.com',
+			'to_name' => 'Jon Doe',
 			'subject' => 'Hey!',
 			'template' => 'default',
 			'layout' => 'default',
 			'format' => 'both',
 			'template_vars' => array('a' => 'variable', 'some' => 'thing'),
 			'sent' => false,
+			'sent_content' => null,
 			'locked' => false,
 			'send_tries' => '0',
 			'config' => 'default'
@@ -71,13 +73,13 @@ class EmailQueueTest extends CakeTestCase {
 		$this->assertEquals($count + 2, $this->EmailQueue->find('count'));
 
 		$email = $this->EmailQueue->find('first', array(
-			'conditions' => array('to' => 'a@example.com')
+			'conditions' => array('to_email' => 'a@example.com')
 		));
 		$this->assertEquals(array('a' => 'b'), $email['EmailQueue']['template_vars']);
 		$this->assertEquals($date, $email['EmailQueue']['send_at']);
 
 		$email = $this->EmailQueue->find('first', array(
-			'conditions' => array('to' => 'b@example.com')
+			'conditions' => array('to_email' => 'b@example.com')
 		));
 		$this->assertEquals(array('a' => 'b'), $email['EmailQueue']['template_vars']);
 		$this->assertEquals($date, $email['EmailQueue']['send_at']);
@@ -143,7 +145,10 @@ class EmailQueueTest extends CakeTestCase {
  * @return void
  */
 	public function testSuccess() {
-		$this->EmailQueue->success('email-1');
+		$sentData = array(
+			'headers' => 'From: abc@example.com',
+			'message' => 'This is a test message.');
+		$this->EmailQueue->success('email-1', $sentData);
 		$this->assertEquals(1, $this->EmailQueue->field('sent', array('id' => 'email-1')));
 	}
 

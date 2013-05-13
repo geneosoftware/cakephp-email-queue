@@ -27,7 +27,7 @@ class EmailQueue extends AppModel {
 /**
  * Stores a new email message in the queue
  *
- * @param mixed $to email or array of emails as recipients
+ * @param mixed $to email or array of emails as recipients, can pass to name as the key
  * @param array $data associative array of variables to be passed to the email template
  * @param array $options list of options for email sending. Possible keys:
  *
@@ -56,7 +56,7 @@ class EmailQueue extends AppModel {
 			$to = array($to);
 		}
 
-		foreach ($to as $to_email => $to_name) {
+		foreach ($to as $to_name => $to_email) {
 			$email['to_email'] = $to_email;
 			$email['to_name'] = $to_name;
 			$this->create();
