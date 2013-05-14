@@ -121,7 +121,9 @@ class EmailQueue extends AppModel {
  */
 	public function success($id, $sent_content) {
 		$this->id = $id;
-		$sent_content = implode(' ', $sent_content);
+		if (is_array($sent_content)) {
+			$sent_content = implode(' ', $sent_content);
+		}
 		return $this->saveField('sent', true) && $this->saveField('sent_content', $sent_content);
 	}
 
