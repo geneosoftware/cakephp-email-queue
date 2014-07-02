@@ -25,6 +25,7 @@ class SenderShellTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
+		Configure::write('debug', 0);
 		$this->out = $this->getMock('ConsoleOutput', array(), array(), '', false);
 		$this->in = $this->getMock('ConsoleInput', array(), array(), '', false);
 

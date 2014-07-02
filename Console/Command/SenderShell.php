@@ -41,6 +41,10 @@ class SenderShell extends AppShell {
  * @access public
  */
 	public function main() {
+		if (Configure::read('debug') !== 0) {
+			return true;
+		}
+
 		Configure::write('App.baseUrl', '/');
 		$emailQueue = ClassRegistry::init('EmailQueue.EmailQueue');
 
@@ -68,7 +72,7 @@ class SenderShell extends AppShell {
 				$this->err($exception->getMessage());
 				$sent = false;
 			}
-			
+
 			if ($sent) {
 				$emailQueue->success($e['EmailQueue']['id'], $sent);
 				$this->out('<success>Email ' . $e['EmailQueue']['id'] . ' was sent</success>');
