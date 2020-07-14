@@ -150,7 +150,7 @@ class EmailQueueFixture extends CakeTestFixture {
 			'sent_content' => NULL,
 			'locked' => 0,
 			'send_tries' => 0,
-			'send_at' => '2020-06-20 13:50:48',
+			'send_at' => '2040-06-20 13:50:48',
 			'created' => '2011-06-20 13:50:48',
 			'modified' => '2011-06-20 13:50:48'
 		),
