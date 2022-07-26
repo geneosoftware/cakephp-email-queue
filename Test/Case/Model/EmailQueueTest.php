@@ -1,11 +1,12 @@
 <?php
 App::uses('EmailQueue', 'EmailQueue.Model');
+App::uses('AppTestCase', 'TestSuite');
 
 /**
  * EmailQueue Test Case
  *
  */
-class EmailQueueTest extends CakeTestCase {
+class EmailQueueTest extends AppTestCase {
 
 /**
  * Fixtures
