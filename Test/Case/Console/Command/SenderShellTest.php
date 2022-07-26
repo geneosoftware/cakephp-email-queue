@@ -2,12 +2,13 @@
 
 App::uses('SenderShell', 'EmailQueue.Console/Command');
 App::uses('CakeEmail', 'Network/Email');
+App::uses('AppTestCase', 'TestSuite');
 
 /**
  * SenderShell Test Case
  *
  */
-class SenderShellTest extends CakeTestCase {
+class SenderShellTest extends AppTestCase {
 
 /**
  * Fixtures
