@@ -22,7 +22,7 @@ class EmailQueueTest extends AppTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->EmailQueue = ClassRegistry::init('EmailQueue.EmailQueue');
 	}
@@ -32,7 +32,7 @@ class EmailQueueTest extends AppTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->EmailQueue);
 		parent::tearDown();
 	}

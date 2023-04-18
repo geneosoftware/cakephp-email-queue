@@ -24,7 +24,7 @@ class SenderShellTest extends AppTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		Configure::write('debug', 0);
 		$this->out = $this->getMock('ConsoleOutput', array(), array(), '', false);
